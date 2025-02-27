@@ -29,6 +29,15 @@
       "type": "textfield",
       "title": "Default Bang",
       "description": "The default bang to use if none is specified in the query"
+    },
+    {
+      "default": true,
+      "required": false,
+      "type": "checkbox",
+      "name": "saveSearch",
+      "label": "Save Search",
+      "title": "Save Search",
+      "description": "Save searches to a list of saved searches"
     }
   ],
   "dependencies": {
