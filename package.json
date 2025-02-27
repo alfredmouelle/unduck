@@ -2,20 +2,33 @@
   "$schema": "https://www.raycast.com/schemas/extension.json",
   "name": "unduck",
   "title": "Unduck",
-  "description": "DuckDuckGo's bang redirects are too slow. Add the following URL as a custom search engine to your browser. Enables all of DuckDuckGo's bangs.",
+  "description": "Search anything, everywhere, using thousands of available bangs.",
   "icon": "extension-icon.png",
   "author": "alfredmouelle",
   "owner": "alfred-mouelle",
   "categories": [
     "Productivity"
   ],
+  "keywords": ["search", "duckduckgo", "bang", "redirect", "goto"],
   "license": "MIT",
   "commands": [
     {
+      "mode": "view",
       "name": "unduck",
       "title": "Unduck",
-      "description": "DuckDuckGo's bang redirects are too slow. Add the following URL as a custom search engine to your browser. Enables all of DuckDuckGo's bangs.",
-      "mode": "view"
+      "icon": "extension-icon.png",
+      "keywords": ["search", "duckduckgo", "bang", "redirect", "goto"],
+      "description": "Search anything, everywhere, using thousands of available bangs."
+    }
+  ],
+  "preferences": [
+    {
+      "default": "!g",
+      "required": false,
+      "name": "defaultBang",
+      "type": "textfield",
+      "title": "Default Bang",
+      "description": "The default bang to use if none is specified in the query"
     }
   ],
   "dependencies": {
