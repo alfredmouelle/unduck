@@ -1,13 +1,15 @@
 import { Action, ActionPanel, Form, getPreferenceValues, LocalStorage, open } from "@raycast/api";
 import { useEffect, useState } from "react";
 
+const STORAGE_KEY = "searches";
+const SEARCH_URL = "https://unduck.link?q=%s";
+
 export default function Command() {
   const [savedSearches, setSavedSearches] = useState<string[]>([]);
-  const preferences = getPreferenceValues<{ defaultBang: string; saveSearch: boolean }>();
-
+  const preferences = getPreferenceValues<Preferences>();
   useEffect(() => {
     const loadSearches = async () => {
-      const savedSearches = await LocalStorage.getItem<string>("searches");
+      const savedSearches = await LocalStorage.getItem<string>(STORAGE_KEY);
       if (savedSearches) setSavedSearches(JSON.parse(savedSearches));
     };
     loadSearches();
@@ -18,11 +20,12 @@ export default function Command() {
     if (!searchQuery.length) {
       searchQuery = /!\w+/.test(values.query) ? values.query : `${values.query} ${preferences.defaultBang}`;
     }
-    open(`https://unduck.link?q=${encodeURIComponent(searchQuery)}`);
+    if (!searchQuery.length) return;
+    open(SEARCH_URL.replace("%s", encodeURIComponent(searchQuery)));
     if (values.saveSearch && values.query && !savedSearches.includes(values.query)) {
-      const newSavedSearches = [...savedSearches, values.query];
+      const newSavedSearches = [values.query, ...savedSearches];
       setSavedSearches(newSavedSearches);
-      await LocalStorage.setItem("searches", JSON.stringify(newSavedSearches));
+      await LocalStorage.setItem(STORAGE_KEY, JSON.stringify(newSavedSearches));
     }
   };
 

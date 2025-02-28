@@ -1,6 +1,6 @@
 # Unduck
 
-Search anything, everywhere, using thousands of available bangs 💥.
+The fastest "search engine" for !bang users 💥.
 
 When the search engine was created by [Theo Browne](https://github.com/t3dotgg), I was looking for a way to not just search using my browser directly, but to make it most widely available on my system, using the power of Raycast.
 
